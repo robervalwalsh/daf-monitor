@@ -13,3 +13,5 @@ export FLASK_DEBUG=1
 ```
 
 Using [bootstrap](https://getbootstrap.com/docs/4.5/getting-started/introduction/)
+
+[wtforms](https://wtforms.readthedocs.io/en/latest/fields/#module-wtforms.fields.html5)
