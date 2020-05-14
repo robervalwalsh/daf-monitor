@@ -7,9 +7,9 @@ from app.dryair.forms import DryAirForm
 def home():
     return render_template('home.html',title='Home')
 
-@app.route('/daf-monitor/dryair/add')
+@app.route('/daf-monitor/dryair/add-entry')
 def dryair():
     title = 'Dry Air'
     form = DryAirForm()
     locations = ['25c','26']
-    return render_template('dryair.html',title=title, locations=locations, form=form)
+    return render_template('dryair_add.html',title=title, locations=locations, form=form)
