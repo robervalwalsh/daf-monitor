@@ -1,49 +1,54 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    <h1>{{ title }}</h1>
+    <h1>{{ title }} - Add entry</h1>
     <p></p>
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
-<!--        <p> Location </p>
-        <select name= locations method="GET" action="/">
-            {% for loc in locations %}
-                <option value= "{{ loc }}" SELECTED>{{ loc }}</option>"
-            {% endfor %}
-        </select> -->
-        <p> {{ form.location.label }}<br>
+        {{ form.csrf_token }}
+        <p>
             {{ form.location() }}
         </p>
         
-        <p>{{ form.location.value }}</p>
-        
         <p>
             {{ form.author.label }}<br>
-            {{ form.author(size=32) }}
+            {{ form.author(size=42) }}
+            {% for error in form.author.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
         </p>
-<!--        <p>
-            {{ form.location.label }}<br>
-            {{ form.location(size=32) }}
-        </p> -->
         <p>
             {{ form.date.label }}<br>
-            {{ form.date(size=32) }}
+            {{ form.date(size=42) }}
+            {% for error in form.date.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
         </p>
         <p>
             {{ form.dewpoint.label }}<br>
-            {{ form.dewpoint(size=32) }}
+            {{ form.dewpoint(size=42) }}
+            {% for error in form.dewpoint.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
         </p>
         <p>
             {{ form.runtime.label }}<br>
-            {{ form.runtime(size=32) }}
+            {{ form.runtime(size=42) }}
+            {% for error in form.runtime.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
         </p>
         <p>
             {{ form.runtime1.label }}<br>
-            {{ form.runtime1(size=32) }}
+            {{ form.runtime1(size=42) }}
         </p>
         <p>
             {{ form.runtime2.label }}<br>
-            {{ form.runtime2(size=32) }}
+            {{ form.runtime2(size=42) }}
+        </p>
+        <p>
+            {{ form.message.label }}<br>
+            {{ form.message(cols=42, rows=5) }}
         </p>
         <p>{{ form.submit() }}</p>
     </form>    
