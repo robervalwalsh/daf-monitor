@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, redirect, flash, request
 from app import app
 from app.dryair.forms import DryAirForm
 
@@ -7,9 +7,16 @@ from app.dryair.forms import DryAirForm
 def home():
     return render_template('home.html',title='Home')
 
-@app.route('/daf-monitor/dryair/add-entry')
+@app.route('/daf-monitor/dryair/add-entry', methods=['GET', 'POST'])
 def dryair():
     title = 'Dry Air'
     form = DryAirForm()
-    locations = ['25c','26']
-    return render_template('dryair_add.html',title=title, locations=locations, form=form)
+    if form.validate_on_submit():
+        return redirect('/daf-monitor/home')
+        
+    if request.method == 'POST':
+        if form.submit.data:
+            return render_template('dryair_new.html',title=title, form=form)
+
+    return render_template('dryair_add.html',title=title, form=form)
+
