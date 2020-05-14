@@ -9,3 +9,4 @@ class DryAirForm(FlaskForm):
     var2 = DecimalField('Var1', validators=[DataRequired()])
     var3 = DecimalField('Var1', validators=[DataRequired()])
     time_read = TimeField('Reading Time', validators=[DataRequired()])
+    submit = SubmitField('Submit')
