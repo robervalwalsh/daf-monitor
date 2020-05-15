@@ -1,55 +1,89 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    <h1>{{ title }} - Add entry</h1>
-    <p></p>
+    <div><br>
+    </div>
+    <h1>DAF Monitor</h1>
+    <hr>
+    <h2>{{ title }} - add compressor data</h2>
+    <div><br><br>
+    </div>
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
         {{ form.csrf_token }}
+        <table style="width:100%">
+        <tr>
+          <th><h3>Compressor Bld. 25c</h3></th>
+          <th><h3>Compressor Bld. 26</h3></th>
+        </tr>
+        <tr>
+         <td valign="top">
+          <p>
+            {{ form.date_25c.label }}<br>
+            {{ form.date_25c(size=26) }}<br>
+            {% for error in form.date_25c.errors %}
+               <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+          <p>
+            {{ form.dewpoint_25c.label }}<br>
+            {{ form.dewpoint_25c(size=26) }}<br>
+            {% for error in form.dewpoint_25c.errors %}
+               <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+          </p>
+          <p>
+            {{ form.system_25c.label }}<br>
+            {{ form.system_25c(size=26) }}<br>
+            {% for error in form.system_25c.errors %}
+               <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+          </p>
+          <p>
+            {{ form.pump1_25c.label }}<br>
+            {{ form.pump1_25c(size=26) }}<br>
+            {% for error in form.pump1_25c.errors %}
+               <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+          </p>
+          <p>
+            {{ form.pump2_25c.label }}<br>
+            {{ form.pump2_25c(size=26) }}<br>
+            {% for error in form.pump2_25c.errors %}
+               <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+          </p>
+         </td>
+         <td valign="top">
+          <p>
+            {{ form.date_26.label }}<br>
+            {{ form.date_26(size=26) }}<br>
+            {% for error in form.date_26.errors %}
+               <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+          </p>
         <p>
-            {{ form.location() }}
-        </p>
-        
-        <p>
-            {{ form.author.label }}<br>
-            {{ form.author(size=42) }}
-            {% for error in form.author.errors %}
-            <span style="color: red;">[{{ error }}]</span>
+            {{ form.dewpoint_26.label }}<br>
+            {{ form.dewpoint_26(size=26) }}<br>
+            {% for error in form.dewpoint_26.errors %}
+               <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
-            {{ form.date.label }}<br>
-            {{ form.date(size=42) }}
-            {% for error in form.date.errors %}
-            <span style="color: red;">[{{ error }}]</span>
+            {{ form.compressor_26.label }}<br>
+            {{ form.compressor_26(size=26) }}<br>
+            {% for error in form.compressor_26.errors %}
+               <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
-        <p>
-            {{ form.dewpoint.label }}<br>
-            {{ form.dewpoint(size=42) }}
-            {% for error in form.dewpoint.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.runtime.label }}<br>
-            {{ form.runtime(size=42) }}
-            {% for error in form.runtime.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.runtime1.label }}<br>
-            {{ form.runtime1(size=42) }}
-        </p>
-        <p>
-            {{ form.runtime2.label }}<br>
-            {{ form.runtime2(size=42) }}
-        </p>
-        <p>
-            {{ form.message.label }}<br>
-            {{ form.message(cols=42, rows=5) }}
-        </p>
-        <p>{{ form.submit() }}</p>
+        </td>
+        </tr>
+        <tr>
+        <td></td>
+        <td>
+          <p>{{ form.submit() }}</p>
+        </td>
+        </tr> 
+        </table>
     </form>    
 {% endblock content %}
+
