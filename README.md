@@ -22,7 +22,8 @@ cd roberval/daf-monitor/
 source ../dotfiles/.aliases 
 export FLASK_APP=daf-monitor.py
 export FLASK_DEBUG=1
-nedit app/routes.py app/templates/dryair.html  &
-nedit app/dryair/forms.py  &
 
 
+nedit app/routes.py & 
+nedit app/templates/*.html &
+nedit app/dryair/*.py &
