@@ -9,4 +9,29 @@
     <div><br><br>
     </div>
     <p><a href="{{ url_for('dryair_add') }}">Add compressor data</a></p>
+    <br>
+    <div class="embed-wrapper">
+    <p>
+    {{ hplots.dewpoint.div|safe }}
+    {{ hplots.dewpoint.script|safe }}
+    </p><br>
+    <p>
+    {{ hplots.system.div|safe }}
+    {{ hplots.system.script|safe }}
+    <p>
+    </p><br>
+    {{ hplots.avgflow.div|safe }}
+    {{ hplots.avgflow.script|safe }}
+    <p>
+    </p><br>
+    {{ hplots.dutycycle.div|safe }}
+    {{ hplots.dutycycle.script|safe }}
+    </p><br>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    
 {% endblock content %}
