@@ -9,7 +9,7 @@ import pandas as pd
 
 class DryAirForm(FlaskForm):
     submit = SubmitField('  Submit Form  ')
-    # building 26
+    # building 25
     date_25c = DateTimeField('Date', default=datetime.today, validators=[DataRequired()])
     dewpoint_25c = DecimalField('Dew point (\xb0C)', validators=[DataRequired()])
     system_25c = DecimalField('System (hours)', validators=[DataRequired()])
@@ -19,6 +19,11 @@ class DryAirForm(FlaskForm):
     date_26 = DateTimeField('Date', default=datetime.today, validators=[DataRequired()])
     dewpoint_26 = DecimalField('Dew point (\xb0C)', validators=[DataRequired()])
     compressor_26 = DecimalField('Compressor (hours)', validators=[DataRequired()])
+    # building 26_comp2
+    date_26_comp2 = DateTimeField('Date', default=datetime.today, validators=[DataRequired()])
+    dewpoint_26_comp2 = DecimalField('Dew point (\xb0C)', validators=[DataRequired()])
+    pump1_26_comp2 = DecimalField('Pump 1 (hours)', validators=[DataRequired()])
+    pump2_26_comp2 = DecimalField('Pump 2 (hours)', validators=[DataRequired()])
     
     def save_data(self):
         # Building 25c
@@ -46,3 +51,18 @@ class DryAirForm(FlaskForm):
             df_26.to_csv(fname26, mode='a', index=False, header=False)
         else:
             df_26.to_csv(fname26, mode='a', index=False, header=True)
+            
+        # Building 26_comp2
+        data26_comp2 = { 'date': [self.date_26_comp2.data.strftime('%Y-%m-%d %H:%M:%S')],
+                    'pump1': [str(self.pump1_26_comp2.data)],
+                    'pump2': [str(self.pump2_26_comp2.data)],
+                    'dewpoint': [str(self.dewpoint_26_comp2.data)] }
+        df_26_comp2 =  pd.DataFrame(data=data26_comp2)
+        
+        fname26_comp2 = '/var/www/html/daf-monitor/compressor_data_26_comp2.csv' 
+        if os.path.isfile(fname26_comp2):
+            df_26_comp2.to_csv(fname26_comp2, mode='a', index=False, header=False)
+        else:
+            df_26_comp2.to_csv(fname26_comp2, mode='a', index=False, header=True)
+            
+            
