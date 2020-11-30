@@ -4,6 +4,10 @@ from datetime import datetime
 from flask import render_template, redirect, flash, request, url_for
 from app import app
 from app.dryair.forms import DryAirForm
+from app.dryair.forms import DryAirForm25c
+from app.dryair.forms import DryAirForm26
+from app.dryair.forms import DryAirForm26_comp2
+
 import pandas as pd
 
 
@@ -23,6 +27,7 @@ def dryair():
     fname = {}
     fname['25c'] = '/var/www/html/daf-monitor/compressor_data_25c.csv'
     fname['26']  = '/var/www/html/daf-monitor/compressor_data_26.csv'
+#    fname['26_comp2']  = '/var/www/html/daf-monitor/compressor_data_26_comp2.csv'
     df = {}
     dates = {}
     values = {}
@@ -57,6 +62,7 @@ def dryair():
     color = {}
     color['25c'] = 'navy'
     color['26'] = 'firebrick'
+#    color['26_comp2'] = 'red'
     
 #    hist_plots = ['dewpoint','system','dutycycle','avgflow']
     hist_plots_render = {}
@@ -130,4 +136,37 @@ def dryair_add():
 #            return render_template('dryair_new.html',title=title, form=form)
             
     return render_template('dryair_add.html',title=title, form=form)
+
+@app.route('/daf-monitor/dryair/add-data/25c', methods=['GET', 'POST'])
+def dryair_add_25c():
+    title = 'Dry Air'
+    form = DryAirForm25c()
+    if form.validate_on_submit():
+#        return redirect('/daf-monitor/home')
+        form.save_data()
+        return render_template('dryair_new_25c.html',title=title, form=form)
+        
+    return render_template('dryair_add_25c.html',title=title, form=form)
+
+@app.route('/daf-monitor/dryair/add-data/26', methods=['GET', 'POST'])
+def dryair_add_26():
+    title = 'Dry Air'
+    form = DryAirForm26()
+    if form.validate_on_submit():
+#        return redirect('/daf-monitor/home')
+        form.save_data()
+        return render_template('dryair_new_26.html',title=title, form=form)
+        
+    return render_template('dryair_add_26.html',title=title, form=form)
+
+@app.route('/daf-monitor/dryair/add-data/26_comp2', methods=['GET', 'POST'])
+def dryair_add_26_comp2():
+    title = 'Dry Air'
+    form = DryAirForm26_comp2()
+    if form.validate_on_submit():
+#        return redirect('/daf-monitor/home')
+        form.save_data()
+        return render_template('dryair_new_26_comp2.html',title=title, form=form)
+        
+    return render_template('dryair_add_26_comp2.html',title=title, form=form)
 
