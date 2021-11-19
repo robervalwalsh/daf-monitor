@@ -27,6 +27,7 @@ class DryAirForm(FlaskForm):
     dewpoint_26_comp2 = DecimalField('Dew point (\xb0C)', validators=[DataRequired()])
     pump1_26_comp2 = DecimalField('Pump 1 (hours)', validators=[DataRequired()])
     pump2_26_comp2 = DecimalField('Pump 2 (hours)', validators=[DataRequired()])
+    volume_26_comp2 = DecimalField('Volume (m\xb3)', validators=[DataRequired()])
     
     def save_data(self):
         # Building 25c
@@ -59,7 +60,8 @@ class DryAirForm(FlaskForm):
         data26_comp2 = { 'date': [self.date_26_comp2.data.strftime('%Y-%m-%d %H:%M:%S')],
                     'pump1': [str(self.pump1_26_comp2.data)],
                     'pump2': [str(self.pump2_26_comp2.data)],
-                    'dewpoint': [str(self.dewpoint_26_comp2.data)] }
+                    'dewpoint': [str(self.dewpoint_26_comp2.data)],
+                    'volume': [str(self.volume_26_comp2.data)] }
         df_26_comp2 =  pd.DataFrame(data=data26_comp2)
         
         fname26_comp2 = '/var/www/html/daf-monitor/compressor_data_26_comp2.csv' 
@@ -120,13 +122,15 @@ class DryAirForm26_comp2(FlaskForm):
     dewpoint_26_comp2 = DecimalField('Dew point (\xb0C)', validators=[DataRequired()])
     pump1_26_comp2 = DecimalField('Pump 1 (hours)', validators=[DataRequired()])
     pump2_26_comp2 = DecimalField('Pump 2 (hours)', validators=[DataRequired()])
+    volume_26_comp2 = DecimalField('Volume (m\xb3)', validators=[DataRequired()])
     
     def save_data(self):
         # Building 26_comp2
         data26_comp2 = { 'date': [self.date_26_comp2.data.strftime('%Y-%m-%d %H:%M:%S')],
                     'pump1': [str(self.pump1_26_comp2.data)],
                     'pump2': [str(self.pump2_26_comp2.data)],
-                    'dewpoint': [str(self.dewpoint_26_comp2.data)] }
+                    'dewpoint': [str(self.dewpoint_26_comp2.data)], 
+                    'volume': [str(self.volume_26_comp2.data)] }
         df_26_comp2 =  pd.DataFrame(data=data26_comp2)
         
         fname26_comp2 = '/var/www/html/daf-monitor/compressor_data_26_comp2.csv' 

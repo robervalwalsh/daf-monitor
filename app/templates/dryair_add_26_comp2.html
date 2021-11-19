@@ -44,6 +44,13 @@
                <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
           </p>
+          <p>
+            {{ form.volume_26_comp2.label }}<br>
+            {{ form.volume_26_comp2(size=26) }}<br>
+            {% for error in form.volume_26_comp2.errors %}
+               <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+          </p>
          </td>
         </tr>
         <tr>
