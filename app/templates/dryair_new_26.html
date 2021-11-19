@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div><br>
+    </div>
+    <h1>DAF Monitor</h1>
+    <hr>
+    <h2>{{ title }} - new added compressor data</h2>
+    <div><br><br>
+    </div>
+        <table style="width:100%">
+        <tr>
+          <th><h3>Compressor Bld. 26</h3></th>
+        </tr>
+        <tr>
+         <td valign="top">
+          <p>
+            <b>{{ form.date_26.label }}</b> <br>
+            {{ form.date_26.data }}
+          </p>
+        <p>
+            <b>{{ form.dewpoint_26.label }}</b> <br>
+            {{ form.dewpoint_26.data }}
+        </p>
+        <p>
+            <b>{{ form.compressor_26.label }}</b> <br>
+            {{ form.compressor_26.data }}
+        </p>
+        </td>
+        </tr>
+        <tr>
+        <td></td>
+        <td>
+          <p><a href="{{ url_for('dryair') }}">Back</a></p>
+        </td>
+        </tr> 
+        </table>
+       </table>
+    </form>    
+{% endblock content %}

@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div><br>
+    </div>
+    <h1>DAF Monitor</h1>
+    <hr>
+    <br>
+    <p><a href="http://fhlcleangate.desy.de:5002/cabinet-monitor"  target="_blank">Curing cabinets</a></p>
+    <p><a href="{{ url_for('dryair') }}" target="_blank">Dry Air Compressor</a></p>
+{% endblock content %}
