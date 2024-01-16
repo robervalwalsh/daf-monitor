@@ -38,7 +38,8 @@ class DryAirForm(FlaskForm):
                     'dewpoint': [str(self.dewpoint_25c.data)] }
         df_25c =  pd.DataFrame(data=data25c)
         
-        fname25c = '/var/www/html/daf-monitor/compressor_data_25c.csv' 
+        fname25c = '/home/cleangat/daf-monitoring/data/dryair/compressor_data_25c.csv' 
+#        fname25c = '/var/www/html/daf-monitor/compressor_data_25c.csv'
         if os.path.isfile(fname25c):
             df_25c.to_csv(fname25c, mode='a', index=False, header=False)
         else:
@@ -50,7 +51,8 @@ class DryAirForm(FlaskForm):
                    'dewpoint': [str(self.dewpoint_26.data)] }
         df_26 =  pd.DataFrame(data=data26)
         
-        fname26 = '/var/www/html/daf-monitor/compressor_data_26.csv' 
+        fname26 = '/home/cleangat/daf-monitoring/data/dryair/compressor_data_26.csv' 
+#        fname26 = '/var/www/html/daf-monitor/compressor_data_26.csv'
         if os.path.isfile(fname26):
             df_26.to_csv(fname26, mode='a', index=False, header=False)
         else:
@@ -64,7 +66,8 @@ class DryAirForm(FlaskForm):
                     'volume': [str(self.volume_26_comp2.data)] }
         df_26_comp2 =  pd.DataFrame(data=data26_comp2)
         
-        fname26_comp2 = '/var/www/html/daf-monitor/compressor_data_26_comp2.csv' 
+        fname26_comp2 = '/home/cleangat/daf-monitoring/data/dryair/compressor_data_26_comp2.csv' 
+#        fname26_comp2 = '/var/www/html/daf-monitor/compressor_data_26_comp2.csv'
         if os.path.isfile(fname26_comp2):
             df_26_comp2.to_csv(fname26_comp2, mode='a', index=False, header=False)
         else:
@@ -89,7 +92,7 @@ class DryAirForm25c(FlaskForm):
                     'dewpoint': [str(self.dewpoint_25c.data)] }
         df_25c =  pd.DataFrame(data=data25c)
         
-        fname25c = '/var/www/html/daf-monitor/compressor_data_25c.csv' 
+        fname25c = '/home/cleangat/daf-monitoring/data/dryair/compressor_data_25c.csv' 
         if os.path.isfile(fname25c):
             df_25c.to_csv(fname25c, mode='a', index=False, header=False)
         else:
@@ -109,7 +112,7 @@ class DryAirForm26(FlaskForm):
                    'dewpoint': [str(self.dewpoint_26.data)] }
         df_26 =  pd.DataFrame(data=data26)
         
-        fname26 = '/var/www/html/daf-monitor/compressor_data_26.csv' 
+        fname26 = '/home/cleangat/daf-monitoring/data/dryair/compressor_data_26.csv' 
         if os.path.isfile(fname26):
             df_26.to_csv(fname26, mode='a', index=False, header=False)
         else:
@@ -133,7 +136,7 @@ class DryAirForm26_comp2(FlaskForm):
                     'volume': [str(self.volume_26_comp2.data)] }
         df_26_comp2 =  pd.DataFrame(data=data26_comp2)
         
-        fname26_comp2 = '/var/www/html/daf-monitor/compressor_data_26_comp2.csv' 
+        fname26_comp2 = '/home/cleangat/daf-monitoring/data/dryair/compressor_data_26_comp2.csv' 
         if os.path.isfile(fname26_comp2):
             df_26_comp2.to_csv(fname26_comp2, mode='a', index=False, header=False)
         else:

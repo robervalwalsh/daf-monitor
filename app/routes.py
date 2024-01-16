@@ -25,9 +25,11 @@ def home():
 def dryair():
     title = 'Dry Air Compressor'
     fname = {}
-    fname['25c'] = '/var/www/html/daf-monitor/compressor_data_25c.csv'
-    fname['26']  = '/var/www/html/daf-monitor/compressor_data_26.csv'
-#    fname['26_comp2']  = '/var/www/html/daf-monitor/compressor_data_26_comp2.csv'
+    fname['25c'] = '/home/cleangat/daf-monitoring/data/dryair/compressor_data_25c.csv'
+    fname['26']  = '/home/cleangat/daf-monitoring/data/dryair/compressor_data_26.csv'
+#    fname['25c'] = '/var/www/html/daf-monitor/compressor_data_25c.csv'
+#    fname['26']  = '/var/www/html/daf-monitor/compressor_data_26.csv'
+##    fname['26_comp2']  = '/var/www/html/daf-monitor/compressor_data_26_comp2.csv'
     df = {}
     dates = {}
     values = {}
@@ -73,12 +75,12 @@ def dryair():
     hist_plots_lable['avgflow'] = 'average flow (l/min)'
     hist_plots_lable['compressor'] = 'compressor (h)'
     p = {}
-    date_format = ['%d %b %Y']
+    date_format = '%d %b %Y'
     rc = {}
     rl = {}
     legend = {}
     for idx,h in enumerate(hist_plots):
-        p[h] = figure(plot_width=700, plot_height=400,x_axis_type="datetime",toolbar_location='right')
+        p[h] = figure(width=700, height=400,x_axis_type="datetime",toolbar_location='right')
         p[h].xaxis.formatter=DatetimeTickFormatter(
               microseconds=date_format,
               milliseconds=date_format,
