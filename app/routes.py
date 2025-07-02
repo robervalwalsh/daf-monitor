@@ -32,9 +32,7 @@ def dryair():
     fname = {}
     fname['25c'] = f'/home/{username}/daf-monitoring/data/dryair/compressor_data_25c.csv'
     fname['26']  = f'/home/{username}/daf-monitoring/data/dryair/compressor_data_26.csv'
-#    fname['25c'] = '/var/www/html/daf-monitor/compressor_data_25c.csv'
-#    fname['26']  = '/var/www/html/daf-monitor/compressor_data_26.csv'
-##    fname['26_comp2']  = '/var/www/html/daf-monitor/compressor_data_26_comp2.csv'
+##    fname['26_comp2']  = f'/home/{username}/daf-monitoring/data/dryair//compressor_data_26_comp2.csv'
     df = {}
     dates = {}
     values = {}
