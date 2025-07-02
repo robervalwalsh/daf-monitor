@@ -15,6 +15,10 @@ from bokeh.plotting import figure
 from bokeh.embed import components
 from bokeh.models import DatetimeTickFormatter
 from bokeh.models import Legend
+import getpass
+
+def get_username():
+    return getpass.getuser()
 
 @app.route('/daf-monitor/')
 @app.route('/daf-monitor/home')
@@ -23,10 +27,11 @@ def home():
 
 @app.route('/daf-monitor/dryair')
 def dryair():
+    username = get_username()
     title = 'Dry Air Compressor'
     fname = {}
-    fname['25c'] = '/home/cleangat/daf-monitoring/data/dryair/compressor_data_25c.csv'
-    fname['26']  = '/home/cleangat/daf-monitoring/data/dryair/compressor_data_26.csv'
+    fname['25c'] = f'/home/{username}/daf-monitoring/data/dryair/compressor_data_25c.csv'
+    fname['26']  = f'/home/{username}/daf-monitoring/data/dryair/compressor_data_26.csv'
 #    fname['25c'] = '/var/www/html/daf-monitor/compressor_data_25c.csv'
 #    fname['26']  = '/var/www/html/daf-monitor/compressor_data_26.csv'
 ##    fname['26_comp2']  = '/var/www/html/daf-monitor/compressor_data_26_comp2.csv'
