@@ -6,7 +6,10 @@ from wtforms.validators import DataRequired
 from wtforms.widgets import TextArea
 from datetime import datetime
 import pandas as pd
+import getpass
 
+def get_username():
+    return getpass.getuser()
 
 ### TO DO: Manyimporvements to do, e.g. use one function and pass building/compressor name as parameter to the function
 
@@ -28,8 +31,10 @@ class DryAirForm(FlaskForm):
     pump1_26_comp2 = DecimalField('Pump 1 (hours)', validators=[DataRequired()])
     pump2_26_comp2 = DecimalField('Pump 2 (hours)', validators=[DataRequired()])
     volume_26_comp2 = DecimalField('Volume (m\xb3)', validators=[DataRequired()])
+    username = get_username()
     
     def save_data(self):
+        print('oioioi')
         # Building 25c
         data25c = { 'date': [self.date_25c.data.strftime('%Y-%m-%d %H:%M:%S')],
                     'system': [str(self.system_25c.data)],
@@ -38,7 +43,7 @@ class DryAirForm(FlaskForm):
                     'dewpoint': [str(self.dewpoint_25c.data)] }
         df_25c =  pd.DataFrame(data=data25c)
         
-        fname25c = '/home/cleangat/daf-monitoring/data/dryair/compressor_data_25c.csv' 
+        fname25c = f'/home/{self.username}/daf-monitoring/data/dryair/compressor_data_25c.csv' 
 #        fname25c = '/var/www/html/daf-monitor/compressor_data_25c.csv'
         if os.path.isfile(fname25c):
             df_25c.to_csv(fname25c, mode='a', index=False, header=False)
@@ -51,7 +56,7 @@ class DryAirForm(FlaskForm):
                    'dewpoint': [str(self.dewpoint_26.data)] }
         df_26 =  pd.DataFrame(data=data26)
         
-        fname26 = '/home/cleangat/daf-monitoring/data/dryair/compressor_data_26.csv' 
+        fname26 = f'/home/{self.username}/daf-monitoring/data/dryair/compressor_data_26.csv' 
 #        fname26 = '/var/www/html/daf-monitor/compressor_data_26.csv'
         if os.path.isfile(fname26):
             df_26.to_csv(fname26, mode='a', index=False, header=False)
@@ -66,7 +71,7 @@ class DryAirForm(FlaskForm):
                     'volume': [str(self.volume_26_comp2.data)] }
         df_26_comp2 =  pd.DataFrame(data=data26_comp2)
         
-        fname26_comp2 = '/home/cleangat/daf-monitoring/data/dryair/compressor_data_26_comp2.csv' 
+        fname26_comp2 = f'/home/{self.username}/daf-monitoring/data/dryair/compressor_data_26_comp2.csv' 
 #        fname26_comp2 = '/var/www/html/daf-monitor/compressor_data_26_comp2.csv'
         if os.path.isfile(fname26_comp2):
             df_26_comp2.to_csv(fname26_comp2, mode='a', index=False, header=False)
@@ -82,6 +87,7 @@ class DryAirForm25c(FlaskForm):
     system_25c = DecimalField('System (hours)', validators=[DataRequired()])
     pump1_25c = DecimalField('Pump 1 (hours)', validators=[DataRequired()])
     pump2_25c = DecimalField('Pump 2 (hours)', validators=[DataRequired()])
+    username = get_username()
     
     def save_data(self):
         # Building 25c
@@ -92,7 +98,7 @@ class DryAirForm25c(FlaskForm):
                     'dewpoint': [str(self.dewpoint_25c.data)] }
         df_25c =  pd.DataFrame(data=data25c)
         
-        fname25c = '/home/cleangat/daf-monitoring/data/dryair/compressor_data_25c.csv' 
+        fname25c = f'/home/{self.username}/daf-monitoring/data/dryair/compressor_data_25c.csv' 
         if os.path.isfile(fname25c):
             df_25c.to_csv(fname25c, mode='a', index=False, header=False)
         else:
@@ -104,6 +110,7 @@ class DryAirForm26(FlaskForm):
     date_26 = DateTimeField('Date', default=datetime.today, validators=[DataRequired()])
     dewpoint_26 = DecimalField('Dew point (\xb0C)', validators=[DataRequired()])
     compressor_26 = DecimalField('Compressor (hours)', validators=[DataRequired()])
+    username = get_username()
     
     def save_data(self):
         # Building 26
@@ -112,7 +119,7 @@ class DryAirForm26(FlaskForm):
                    'dewpoint': [str(self.dewpoint_26.data)] }
         df_26 =  pd.DataFrame(data=data26)
         
-        fname26 = '/home/cleangat/daf-monitoring/data/dryair/compressor_data_26.csv' 
+        fname26 = f'/home/{self.username}/daf-monitoring/data/dryair/compressor_data_26.csv' 
         if os.path.isfile(fname26):
             df_26.to_csv(fname26, mode='a', index=False, header=False)
         else:
@@ -126,6 +133,7 @@ class DryAirForm26_comp2(FlaskForm):
     pump1_26_comp2 = DecimalField('Pump 1 (hours)', validators=[DataRequired()])
     pump2_26_comp2 = DecimalField('Pump 2 (hours)', validators=[DataRequired()])
     volume_26_comp2 = DecimalField('Volume (m\xb3)', validators=[DataRequired()])
+    username = get_username()
     
     def save_data(self):
         # Building 26_comp2
@@ -136,7 +144,7 @@ class DryAirForm26_comp2(FlaskForm):
                     'volume': [str(self.volume_26_comp2.data)] }
         df_26_comp2 =  pd.DataFrame(data=data26_comp2)
         
-        fname26_comp2 = '/home/cleangat/daf-monitoring/data/dryair/compressor_data_26_comp2.csv' 
+        fname26_comp2 = f'/home/{self.username}/daf-monitoring/data/dryair/compressor_data_26_comp2.csv' 
         if os.path.isfile(fname26_comp2):
             df_26_comp2.to_csv(fname26_comp2, mode='a', index=False, header=False)
         else:
