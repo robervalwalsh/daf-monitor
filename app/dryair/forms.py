@@ -16,16 +16,16 @@ import pytz
 def get_username():
     return getpass.getuser()
 
+def get_influx_info(): # see you .basrc, zshrc, etc.
+    return os.environ.get("INFLUX_URL_CMSDAF"),os.environ.get("INFLUX_ORG_CMSDAF"),os.environ.get("INFLUX_TOKEN_DRYAIR")
+
 def write_db(point):
-    ### influxdb API token dry-air-test: scaIB2eqP5d3LpC4bI1bSxhCUlm4z3ObsdsH48nxshOnRSrkIF8GDdljXlonkcRsHfCKRJwF1ddY5Xx44QHKCw==
+    ### influxdb API token
     # InfluxDB configuration
-    db_token = 'EMvjVW7gow2-MWa7Ly3T6duu_F3qQ9yki5MuPZuqQrM-bl6sewhxpxmH5Ob0cptpKoxn-4qIP6ifD7XlJ4B9dg=='
+    db_url, db_org, db_token = get_influx_info()
     db_bucket = 'dry-air'
     if get_username() != 'cleangat':
-        db_token = 'scaIB2eqP5d3LpC4bI1bSxhCUlm4z3ObsdsH48nxshOnRSrkIF8GDdljXlonkcRsHfCKRJwF1ddY5Xx44QHKCw=='
         db_bucket = 'dry-air-test'
-    db_url = 'http://influx2.131.169.217.81.nip.io'
-    db_org = 'desy'
     db_client = InfluxDBClient(url=db_url, token=db_token, org=db_org)
     db_write_api = db_client.write_api(write_options=SYNCHRONOUS)
     db_write_api.write(bucket=db_bucket, org=db_org, record=point)
