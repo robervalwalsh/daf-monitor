@@ -17,15 +17,12 @@ def get_username():
     return getpass.getuser()
 
 def get_influx_info(): # see you .basrc, zshrc, etc.
-    return os.environ.get("INFLUX_URL_CMSDAF"),os.environ.get("INFLUX_ORG_CMSDAF"),os.environ.get("INFLUX_TOKEN_DRYAIR")
+    return os.environ.get("INFLUX_URL_CMSDAF"),os.environ.get("INFLUX_ORG_CMSDAF"),os.environ.get("INFLUX_BUCKET_DRYAIR"),os.environ.get("INFLUX_TOKEN_DRYAIR")
 
 def write_db(point):
     ### influxdb API token
     # InfluxDB configuration
-    db_url, db_org, db_token = get_influx_info()
-    db_bucket = 'dry-air'
-    if get_username() != 'cleangat':
-        db_bucket = 'dry-air-test'
+    db_url, db_org, db_bucket, db_token = get_influx_info()
     db_client = InfluxDBClient(url=db_url, token=db_token, org=db_org)
     db_write_api = db_client.write_api(write_options=SYNCHRONOUS)
     db_write_api.write(bucket=db_bucket, org=db_org, record=point)
