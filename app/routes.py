@@ -54,10 +54,10 @@ def dryair():
             pump1_duration = [(v2-v1)*60 for v1,v2 in zip(df[bld]['pump1'].to_list(), df[bld]['pump1'].to_list()[1:])]
             pump2_duration = [(v2-v1)*60 for v1,v2 in zip(df[bld]['pump2'].to_list(), df[bld]['pump2'].to_list()[1:])]
             volume = [(p1+p2)*883.33 for p1,p2 in zip(pump1_duration,pump2_duration)]
-        avgflow = [ v/t for v,t in zip(volume, timespan)]
+        avgflow = [v/t if t != 0 else 0 for v, t in zip(volume, timespan)]
         avgflow.insert(0, 0)
         values[bld]['avgflow'] = avgflow
-        dutycycle = [x/y for x, y in zip(system_duration, timespan)]
+        dutycycle = [x/y if y!=0 else 0 for x, y in zip(system_duration, timespan)]
         dutycycle.insert(0, 0)
         values[bld]['dutycycle'] = dutycycle
             
